@@ -24,8 +24,33 @@ const fetchData = () => {
     });
 };
 
+// Music player functionality
+const initializeMusic = () => {
+  const audio = document.getElementById('birthday-music');
+  
+  // Set volume to a reasonable level
+  audio.volume = 0.5;
+  
+  // Function to play music with user interaction handling
+  const playMusic = () => {
+    audio.play().catch(e => {
+      console.log("Autoplay prevented. Music will start on user interaction.");
+      // Add click listener to start music on any user interaction
+      document.addEventListener('click', () => {
+        audio.play();
+      }, { once: true });
+    });
+  };
+
+  return { audio, playMusic };
+};
+
 // Animation Timeline
 const animationTimeline = () => {
+  // Initialize and start music
+  const { audio, playMusic } = initializeMusic();
+  playMusic();
+
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
