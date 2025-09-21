@@ -69,8 +69,10 @@ const animationTimeline = () => {
     .split("")
     .join("</span><span>")}</span`;
 
+  // Fix spacing issue by preserving spaces in wish-hbd
   hbd.innerHTML = `<span>${hbd.innerHTML
     .split("")
+    .map(char => char === " " ? "&nbsp;" : char)
     .join("</span><span>")}</span`;
 
   const ideaTextTrans = {

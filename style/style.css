@@ -137,15 +137,24 @@ body {
   border: 3px solid rgba(255, 182, 193, 0.8);
   border-radius: 15px;
   padding: 20px;
+  padding-bottom: 50px; /* Add extra padding to prevent button overlap */
   position: relative;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  min-height: 60px; /* Ensure minimum height */
 }
 
 .text-box p {
   margin: 0;
   text-align: left;
+  /* margin-bottom: 35px; */
+}
+
+.text-box p.hbd-chatbox {
+  line-height: 1.4;
+  word-wrap: break-word;
+  margin-bottom: 20px; /* Extra space for the button */
 }
 
 .text-box span {
@@ -154,13 +163,14 @@ body {
 
 .text-box .fake-btn {
   position: absolute;
-  right: 5px;
-  bottom: 5px;
+  right: 10px;
+  bottom: 10px;
   color: #fff;
   background: linear-gradient(45deg, #ff6b9d, #c44569);
   padding: 8px 12px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+  z-index: 10; /* Ensure button stays on top */
 }
 
 .five p {
@@ -186,6 +196,10 @@ body {
 .idea-6 span,
 .wish-hbd span {
   display: inline-block;
+}
+
+.wish-hbd span {
+  white-space: pre; /* Preserve spaces */
 }
 
 .idea-6 span {
@@ -398,8 +412,10 @@ body {
     width: 85%;
     margin: 0 auto;
     padding: 15px;
+    padding-bottom: 45px; /* Extra padding for mobile button */
     border-radius: 12px;
     backdrop-filter: blur(5px);
+    min-height: 50px;
   }
 
   .text-box .fake-btn {
