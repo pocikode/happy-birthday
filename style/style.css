@@ -199,7 +199,23 @@ body {
 }
 
 .wish-hbd span {
-  white-space: pre; /* Preserve spaces */
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.wish-hbd {
+  font-size: 3em;
+  margin: 0;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #ff6b9d, #ffc107, #ff6b9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  line-height: 1.1;
+  text-align: center;
+  white-space: pre-line;
+  max-width: 100%;
 }
 
 .idea-6 span {
@@ -221,7 +237,6 @@ body {
   width: 80px;
   top: -35px;
   left: 41.5%;
-  /* transform: scale(0.1); */
 }
 
 .baloons img {
@@ -302,17 +317,6 @@ body {
   top: 94vh;
   left: 87vw;
   fill: #ffb6c1;
-}
-
-.wish-hbd {
-  font-size: 3em;
-  margin: 0;
-  text-transform: uppercase;
-  background: linear-gradient(45deg, #ff6b9d, #ffc107, #ff6b9d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .wish h5 {

@@ -69,10 +69,29 @@ const animationTimeline = () => {
     .split("")
     .join("</span><span>")}</span`;
 
-  // Fix spacing issue by preserving spaces in wish-hbd
-  hbd.innerHTML = `<span>${hbd.innerHTML
+  // Fix spacing issue and handle word breaks for wish-hbd
+  let hbdText = hbd.innerHTML;
+  
+  // Handle Indonesian "Selamat Ulang Tahun" - break after "Ulang"
+  if (hbdText.includes("Selamat Ulang Tahun")) {
+    hbdText = hbdText.replace("Selamat Ulang Tahun", "Selamat Ulang\nTahun");
+  }
+  
+  // Handle other common patterns
+  if (hbdText.toLowerCase().includes("happy birthday")) {
+    // Only break if it's getting too long for one line
+    if (hbdText.length > 13) {
+      hbdText = hbdText.replace(/happy birthday/i, "Happy\nBirthday");
+    }
+  }
+  
+  hbd.innerHTML = `<span>${hbdText
     .split("")
-    .map(char => char === " " ? "&nbsp;" : char)
+    .map(char => {
+      if (char === " ") return "&nbsp;";
+      if (char === "\n") return "</span><br><span>";
+      return char;
+    })
     .join("</span><span>")}</span`;
 
   const ideaTextTrans = {
