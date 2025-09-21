@@ -5,6 +5,43 @@ html {
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Add floating hearts animation */
+.hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  color: rgba(255, 192, 203, 0.7);
+  animation: float 6s ease-in-out infinite;
+}
+
+.heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+.heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+.heart:nth-child(4) { left: 40%; animation-delay: 0.5s; }
+.heart:nth-child(5) { left: 50%; animation-delay: 1.5s; }
+.heart:nth-child(6) { left: 60%; animation-delay: 3s; }
+.heart:nth-child(7) { left: 70%; animation-delay: 2.5s; }
+.heart:nth-child(8) { left: 80%; animation-delay: 4s; }
+.heart:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50% { transform: translateY(-10vh) rotate(180deg); }
 }
 
 .container {
@@ -15,6 +52,11 @@ body {
   visibility: hidden;
   position: relative;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 .container div.six {
@@ -39,6 +81,11 @@ body {
 
 .one {
   font-size: 4.5rem;
+  background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .one > img {
@@ -51,19 +98,26 @@ body {
 .two {
   font-size: 1.2rem;
   font-weight: lighter;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .three {
   font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .four .text-box {
   width: 600px;
   margin: 0 auto;
-  border: 3px solid #aaa;
-  border-radius: 5px;
-  padding: 10px;
+  border: 3px solid rgba(255, 182, 193, 0.8);
+  border-radius: 15px;
+  padding: 20px;
   position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .text-box p {
@@ -80,9 +134,10 @@ body {
   right: 5px;
   bottom: 5px;
   color: #fff;
-  background-color: rgb(21, 161, 237);
-  padding: 5px 8px;
-  border-radius: 3px;
+  background: linear-gradient(45deg, #ff6b9d, #c44569);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
 }
 
 .five p {
@@ -90,6 +145,8 @@ body {
   position: absolute;
   left: 0;
   right: 0;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .idea-3 strong {
@@ -159,77 +216,113 @@ body {
 .eight svg:nth-child(1) {
   top: 7vh;
   left: 5vw;
-  fill: #bd6ecf;
+  fill: #ff6b9d;
 }
 
 .eight svg:nth-child(2) {
   top: 23vh;
   left: 35vw;
-  fill: #7dd175;
+  fill: #ff8a95;
 }
 
 .eight svg:nth-child(3) {
   top: 33vh;
   left: 23vw;
-  fill: #349d8b;
+  fill: #ffc1cc;
 }
 
 .eight svg:nth-child(4) {
   top: 43vh;
   left: 57vw;
-  fill: #347a9d;
+  fill: #ff69b4;
 }
 
 .eight svg:nth-child(5) {
   top: 68vh;
   left: 7vw;
-  fill: #c66053;
+  fill: #ffb3ba;
 }
 
 .eight svg:nth-child(6) {
   top: 42vh;
   left: 77vw;
-  fill: #bfaa40;
+  fill: #ffc0cb;
 }
 
 .eight svg:nth-child(7) {
   top: 68vh;
   left: 83vw;
-  fill: #e3bae8;
+  fill: #ff91a4;
 }
 
 .eight svg:nth-child(8) {
   top: 86vh;
   left: 37vw;
-  fill: #8762cb;
+  fill: #ff6b9d;
 }
 
 .eight svg:nth-child(9) {
   top: 94vh;
   left: 87vw;
-  fill: #9a90da;
+  fill: #ffb6c1;
 }
 
 .wish-hbd {
   font-size: 3em;
   margin: 0;
   text-transform: uppercase;
+  background: linear-gradient(45deg, #ff6b9d, #ffc107, #ff6b9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .wish h5 {
   font-weight: lighter;
   font-size: 2rem;
   margin: 10px 0 0;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .nine p {
   font-size: 2rem;
   font-weight: lighter;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 #replay {
   z-index: 3;
   cursor: pointer;
+  background: linear-gradient(45deg, #ff6b9d, #c44569);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+  transition: all 0.3s ease;
+}
+
+#replay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6);
+}
+
+/* Add sparkle animation */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffc107;
+  border-radius: 50%;
+  animation: sparkle 2s linear infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
 }
 
 /* Media Queries */
