@@ -1,3 +1,8 @@
+// Mobile device detection and optimization
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+};
+
 // Import the data to customize and insert them into page
 const fetchData = () => {
   fetch("customize.json")
@@ -51,6 +56,11 @@ const animationTimeline = () => {
   const { audio, playMusic } = initializeMusic();
   playMusic();
 
+  // Mobile optimization: Adjust animation settings based on device
+  const mobile = isMobile();
+  const animationDuration = mobile ? 0.5 : 0.7; // Faster animations on mobile
+  const delayMultiplier = mobile ? 0.8 : 1; // Shorter delays on mobile
+
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
@@ -83,26 +93,26 @@ const animationTimeline = () => {
     .to(".container", 0.1, {
       visibility: "visible"
     })
-    .from(".one", 0.7, {
+    .from(".one", animationDuration, {
       opacity: 0,
       y: 10
     })
-    .from(".two", 0.4, {
+    .from(".two", animationDuration * 0.6, {
       opacity: 0,
       y: 10
     })
     .to(
       ".one",
-      0.7,
+      animationDuration,
       {
         opacity: 0,
         y: 10
       },
-      "+=2.5"
+      `+=${2.5 * delayMultiplier}`
     )
     .to(
       ".two",
-      0.7,
+      animationDuration,
       {
         opacity: 0,
         y: 10

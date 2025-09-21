@@ -1,5 +1,7 @@
 html {
   box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -8,6 +10,10 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   background-attachment: fixed;
   overflow-x: hidden;
+  /* Mobile optimization */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
 }
 
 /* Add floating hearts animation */
@@ -26,6 +32,12 @@ body {
   font-size: 20px;
   color: rgba(255, 192, 203, 0.7);
   animation: float 6s ease-in-out infinite;
+  /* Mobile optimization */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
@@ -39,9 +51,14 @@ body {
 .heart:nth-child(9) { left: 90%; animation-delay: 3.5s; }
 
 @keyframes float {
-  0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  0%, 100% { 
+    transform: translateY(100vh) rotate(0deg) translateZ(0);
+    opacity: 0;
+  }
   10%, 90% { opacity: 1; }
-  50% { transform: translateY(-10vh) rotate(180deg); }
+  50% { 
+    transform: translateY(-10vh) rotate(180deg) translateZ(0);
+  }
 }
 
 .container {
@@ -57,6 +74,12 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  /* Mobile performance optimizations */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .container div.six {
@@ -351,17 +374,59 @@ body {
 }
 
 @media screen and (max-width: 500px) {
+  body {
+    background-attachment: scroll; /* Fixed backgrounds can cause issues on mobile */
+  }
+  
   .container {
-    width: 90%;
+    width: 95vw;
+    height: 100vh;
+    border-radius: 15px;
+    backdrop-filter: blur(5px); /* Reduced blur for better performance */
+  }
+
+  .hearts {
+    display: block; /* Keep hearts but optimize them */
+  }
+  
+  .heart {
+    font-size: 16px; /* Smaller hearts for mobile */
+    animation-duration: 8s; /* Slower animation for smoother performance */
   }
 
   .four .text-box {
-    width: 90%;
+    width: 85%;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
   }
 
   .text-box .fake-btn {
-    right: 5px;
-    bottom: -38px;
+    right: 10px;
+    bottom: 10px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .one {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+  
+  .two {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+  
+  .three {
+    font-size: 2rem;
+    padding: 0 20px;
+  }
+  
+  .five p {
+    font-size: 1.5rem;
+    padding: 0 20px;
   }
 
   .idea-5 span {
@@ -369,24 +434,113 @@ body {
   }
 
   .idea-6 span {
-    font-size: 10rem;
+    font-size: 8rem;
   }
 
   .six .hat {
-    width: 50px;
-    top: -20px;
+    width: 40px;
+    top: -15px;
   }
 
   .wish-hbd {
-    font-size: 2.2em;
+    font-size: 2rem;
+    line-height: 1.2;
   }
 
   .wish h5 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    padding: 0 20px;
   }
 
   .nine p {
+    font-size: 1.3rem;
+    padding: 0 20px;
+  }
+  
+  /* Optimize SVG animations for mobile */
+  .eight svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+  
+  /* Mobile device specific optimizations */
+@media screen and (max-width: 768px) {
+  /* Optimize container for tablets and mobile */
+  .container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    backdrop-filter: blur(5px);
+  }
+  
+  /* Reduce heart animations on smaller screens */
+  .heart:nth-child(n+6) {
+    display: none; /* Hide some hearts to improve performance */
+  }
+  
+  /* Optimize text gradients for mobile */
+  .one {
+    font-size: 3.5rem;
+    /* Fallback for devices that don't support gradient text */
+    color: #ff6b9d;
+  }
+  
+  .wish-hbd {
+    font-size: 2.5rem;
+    /* Fallback color */
+    color: #ff6b9d;
+  }
+}
+
+/* High DPI screen optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 2), 
+       screen and (min-resolution: 192dpi) {
+  .heart {
+    font-size: 18px;
+  }
+  
+  .eight svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .container {
+    height: 100vh;
+    padding: 10px 0;
+  }
+  
+  .one {
+    font-size: 2.5rem;
+  }
+  
+  .wish-hbd {
+    font-size: 2rem;
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 320px) {
+  .one {
+    font-size: 2.5rem;
+  }
+  
+  .three {
     font-size: 1.5rem;
-    font-weight: lighter;
+  }
+  
+  .five p {
+    font-size: 1.2rem;
+  }
+  
+  .idea-6 span {
+    font-size: 6rem;
+  }
+  
+  .wish-hbd {
+    font-size: 1.8rem;
   }
 }
